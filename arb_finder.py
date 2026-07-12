@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime, timezone
+from config import API_KEY
 
-API_KEY = 'b99e082e14774f68acb00910687e47cc'
 EXCLUDED_BOOKMAKERS = {"unibet", "betfair_ex_au", "betfair_ex_eu"}
 
 def is_upcoming(event):
@@ -79,7 +79,7 @@ def get_active_sports(api_key, wanted_sports=None):
     
     return active_keys
 
-my_sports_of_interest = ["soccer_epl"]
+my_sports_of_interest = ["soccer_epl", "rugbyleague_nrl", "aussierules_afl"]
 sports_to_scan = get_active_sports(API_KEY, wanted_sports=my_sports_of_interest)
 print(sports_to_scan)
 
@@ -93,15 +93,8 @@ for sport in sports_to_scan:
         f"https://api.the-odds-api.com/v4/sports/{sport}/odds/",
         params={"apiKey": API_KEY, "regions": "au", "markets": "h2h"}
     )
-    au_data = au_response.json()
+    data = au_response.json()
 
-    eu_response = requests.get(
-        f"https://api.the-odds-api.com/v4/sports/{sport}/odds/",
-        params={"apiKey": API_KEY, "regions": "eu", "markets": "h2h"}
-    )
-    eu_data = eu_response.json()
-
-    data = merge_responses(au_data, eu_data)
 
     if not isinstance(data, list):
         print(f"Unexpected response for {sport}: {data}")
