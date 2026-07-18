@@ -2,6 +2,7 @@ import requests
 from datetime import datetime, timezone
 from config import API_KEY
 import json
+import argparse
 
 EXCLUDED_BOOKMAKERS = {"unibet", "betfair_ex_au", "betfair_ex_eu"}
 LOG_PATH = "arb_log.jsonl"
@@ -64,23 +65,6 @@ def calculate_stakes(best_odds, total_stake):
         #print(f"Not an arb, Implied: {total_implied:.4f}")
         return {"is_arb": False, "odds": best_odds, "total_implied": total_implied, "profit": None}
     
-def merge_responses(au_data, eu_data):
-    # Build a lookup from the EU data keyed by (home_team, away_team, commence_time)
-    eu_lookup = {}
-    for event in eu_data:
-        key = (event['home_team'], event['away_team'], event['commence_time'])
-        eu_lookup[key] = event.get('bookmakers', [])
-    
-    # Merge EU bookmakers into AU events where there's a match
-    merged = []
-    for event in au_data:
-        key = (event['home_team'], event['away_team'], event['commence_time'])
-        if key in eu_lookup:
-            event['bookmakers'] = event.get('bookmakers', []) + eu_lookup[key]
-        merged.append(event)
-    
-    return merged
-
 
 def get_active_sports(api_key, wanted_sports=None):
     response = requests.get(
@@ -93,15 +77,15 @@ def get_active_sports(api_key, wanted_sports=None):
     
     if wanted_sports is not None:
         # only keep sports you actually care about, that are also active
-        return [s for s in wanted_sports if s in active_keys]
+        # "upcoming" is a virtual key the /odds endpoint accepts directly —
+        # it never appears in /sports, so let it through unfiltered
+        return [s for s in wanted_sports if s == "upcoming" or s in active_keys]
     
     return active_keys
 
-my_sports_of_interest = ["soccer_epl", "rugbyleague_nrl", "aussierules_afl"]
-sports_to_scan = get_active_sports(API_KEY, wanted_sports=my_sports_of_interest)
-print(sports_to_scan)
 
-#sports_to_scan = ["upcoming"]
+"""
+sports_to_scan = ["upcoming"]
 
 
 MIN_PROFIT_THRESHOLD = 0.0
@@ -130,3 +114,4 @@ for sport in sports_to_scan:
             for name, (price, book, stake) in bet_details["odds"].items():
                 print(f"  {name}: {price:.2f} @ {book} — stake ${stake:.2f}")
   
+"""
