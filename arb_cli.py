@@ -5,6 +5,7 @@ from config import API_KEY
 import requests
 
 argument_parser = argparse.ArgumentParser(description="Arbitrage Betting CLI")
+argument_parser.add_argument("--regions", nargs='*', default=["au"], help="list of regions to scan (e.g., ['au', 'eu'])")
 argument_parser.add_argument("--sports", nargs='*', default=["upcoming"], help="list of sports keys (e.g., ['soccer_epl', 'basketball_nbl'])")
 argument_parser.add_argument("--min-profit", type=float, default=0.0, help="Minimum profit threshold for arbitrage opportunities")
 argument_parser.add_argument("--total-stake", type=float, default=100.0, help="Total stake amount for betting calculations")
