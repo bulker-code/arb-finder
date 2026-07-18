@@ -76,4 +76,4 @@ back line by line). Each record includes:
 
 - Only the `h2h` (moneyline) market is scanned; totals/spreads aren't covered.
 - Only the `au` region is queried.
-- `unibet`, `betfair_ex_au`, and `betfair_ex_eu` are excluded from odds comparison.
+- `unibet`, and `betfair_ex_au` are excluded from odds comparison.
