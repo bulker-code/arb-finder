@@ -28,5 +28,3 @@ for sport in active_sports:
         print(stakes_info)
         if stakes_info["is_arb"] and stakes_info["profit"] >= args.min_profit: 
             print(f"Arbitrage opportunity found for {event['home_team']} vs {event['away_team']}: Expected Profit: {stakes_info['profit']:.2f}%")
-
-
