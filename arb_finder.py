@@ -82,36 +82,3 @@ def get_active_sports(api_key, wanted_sports=None):
         return [s for s in wanted_sports if s == "upcoming" or s in active_keys]
     
     return active_keys
-
-
-"""
-sports_to_scan = ["upcoming"]
-
-
-MIN_PROFIT_THRESHOLD = 0.0
-
-for sport in sports_to_scan:
-    au_response = requests.get(
-        f"https://api.the-odds-api.com/v4/sports/{sport}/odds/",
-        params={"apiKey": API_KEY, "regions": "au", "markets": "h2h"}
-    )
-    data = au_response.json()
-
-
-    if not isinstance(data, list):
-        print(f"Unexpected response for {sport}: {data}")
-        continue
-          
-    for event in data:
-        if not is_upcoming(event):
-            continue  # skip live/finished matches
-        best_odds = get_best_odds_per_outcome(event)
-        bet_details = calculate_stakes(best_odds, 100)
-        log_result(sport, event, bet_details)
-        print(bet_details)
-        if bet_details["is_arb"] and bet_details["profit"] >= MIN_PROFIT_THRESHOLD:
-            print(f"ARB FOUND — Profit: {bet_details['profit']:.2f}%")
-            for name, (price, book, stake) in bet_details["odds"].items():
-                print(f"  {name}: {price:.2f} @ {book} — stake ${stake:.2f}")
-  
-"""
