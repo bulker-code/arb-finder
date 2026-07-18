@@ -7,22 +7,6 @@ import argparse
 EXCLUDED_BOOKMAKERS = {"unibet", "betfair_ex_au", "betfair_ex_eu"}
 LOG_PATH = "arb_log.jsonl"
 
-
-def log_result(sport, event, bet_details):
-    record = {
-        "logged_at": datetime.now(timezone.utc).isoformat(),
-        "sport": sport,
-        "home_team": event["home_team"],
-        "away_team": event["away_team"],
-        "commence_time": event["commence_time"],
-        "is_arb": bet_details["is_arb"],
-        "total_implied": bet_details["total_implied"],
-        "profit": bet_details["profit"],
-        "odds": bet_details["odds"],
-    }
-    with open(LOG_PATH, "a") as f:
-        f.write(json.dumps(record) + "\n")
-
 def is_upcoming(event):
     commence = datetime.fromisoformat(event["commence_time"].replace("Z", "+00:00"))
     return commence > datetime.now(timezone.utc)
@@ -82,3 +66,18 @@ def get_active_sports(api_key, wanted_sports=None):
         return [s for s in wanted_sports if s == "upcoming" or s in active_keys]
     
     return active_keys
+
+def log_result(sport, event, bet_details):
+    record = {
+        "logged_at": datetime.now(timezone.utc).isoformat(),
+        "sport": sport,
+        "home_team": event["home_team"],
+        "away_team": event["away_team"],
+        "commence_time": event["commence_time"],
+        "is_arb": bet_details["is_arb"],
+        "total_implied": bet_details["total_implied"],
+        "profit": bet_details["profit"],
+        "odds": bet_details["odds"],
+    }
+    with open(LOG_PATH, "a") as f:
+        f.write(json.dumps(record) + "\n")
