@@ -77,3 +77,5 @@ back line by line). Each record includes:
 
 - Only the `h2h` (moneyline) market is scanned; totals/spreads aren't covered.
 - `unibet`, and `betfair_ex_au` are excluded from odds comparison.
+- Consider odds may change during the time of scanning and bet placement.
+- Most arb opportunities are slim within 1-3% profit
