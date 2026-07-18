@@ -9,7 +9,7 @@ logs every scanned result to a local file.
 For each sport requested, the scanner:
 1. Pulls current h2h odds for every upcoming event from The Odds API (`regions=au`).
 2. Finds the best available price per outcome across bookmakers, skipping the
-   exchanges in `EXCLUDED_BOOKMAKERS` (`unibet`, `betfair_ex_au`, `betfair_ex_eu`).
+   exchanges in `EXCLUDED_BOOKMAKERS` (`unibet`, `betfair_ex_au`).
 3. Checks whether the best odds across outcomes imply a total probability under 100%
    (`total_implied < 1`) — if so, it's an arb, and stake sizes are calculated to lock
    in the same profit regardless of outcome.
