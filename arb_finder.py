@@ -1,8 +1,26 @@
 import requests
 from datetime import datetime, timezone
 from config import API_KEY
+import json
 
 EXCLUDED_BOOKMAKERS = {"unibet", "betfair_ex_au", "betfair_ex_eu"}
+LOG_PATH = "arb_log.jsonl"
+
+
+def log_result(sport, event, bet_details):
+    record = {
+        "logged_at": datetime.now(timezone.utc).isoformat(),
+        "sport": sport,
+        "home_team": event["home_team"],
+        "away_team": event["away_team"],
+        "commence_time": event["commence_time"],
+        "is_arb": bet_details["is_arb"],
+        "total_implied": bet_details["total_implied"],
+        "profit": bet_details["profit"],
+        "odds": bet_details["odds"],
+    }
+    with open(LOG_PATH, "a") as f:
+        f.write(json.dumps(record) + "\n")
 
 def is_upcoming(event):
     commence = datetime.fromisoformat(event["commence_time"].replace("Z", "+00:00"))
@@ -105,6 +123,7 @@ for sport in sports_to_scan:
             continue  # skip live/finished matches
         best_odds = get_best_odds_per_outcome(event)
         bet_details = calculate_stakes(best_odds, 100)
+        log_result(sport, event, bet_details)
         print(bet_details)
         if bet_details["is_arb"] and bet_details["profit"] >= MIN_PROFIT_THRESHOLD:
             print(f"ARB FOUND — Profit: {bet_details['profit']:.2f}%")
