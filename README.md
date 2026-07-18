@@ -7,7 +7,7 @@ logs every scanned result to a local file.
 ## How it works
 
 For each sport requested, the scanner:
-1. Pulls current h2h odds for every upcoming event from The Odds API (`regions=au`).
+1. Pulls current h2h odds for every upcoming event from The Odds API for the requested regions.
 2. Finds the best available price per outcome across bookmakers, skipping the
    exchanges in `EXCLUDED_BOOKMAKERS` (`unibet`, `betfair_ex_au`).
 3. Checks whether the best odds across outcomes imply a total probability under 100%
@@ -38,12 +38,13 @@ For each sport requested, the scanner:
 Run the CLI with one or more sport keys:
 
 ```
-python arb_cli.py --sports soccer_epl basketball_nbl --min-profit 1.0 --total-stake 100
+python arb_cli.py --sports soccer_epl basketball_nbl --regions au uk --min-profit 1.0 --total-stake 100
 ```
 
 | Flag | Default | Description |
 |---|---|---|
 | `--sports` | `upcoming` | Space-separated sport keys (e.g. `soccer_epl`, `basketball_nbl`), or the special value `upcoming` for the next games across all sports. Invalid/inactive keys are dropped. |
+| `--regions` | `au` | Space-separated bookmaker regions to query (e.g. `au`, `uk`, `us`, `eu`). |
 | `--min-profit` | `0.0` | Minimum expected profit % required before an arb is printed. |
 | `--total-stake` | `100.0` | Total amount to split across outcomes when calculating stakes. |
 
@@ -75,5 +76,4 @@ back line by line). Each record includes:
 ## Notes
 
 - Only the `h2h` (moneyline) market is scanned; totals/spreads aren't covered.
-- Only the `au` region is queried.
 - `unibet`, and `betfair_ex_au` are excluded from odds comparison.

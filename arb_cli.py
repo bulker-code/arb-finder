@@ -17,7 +17,7 @@ for sport in active_sports:
     print(f"Scanning sport: {sport}")
     response = requests.get(
         f"https://api.the-odds-api.com/v4/sports/{sport}/odds/",
-        params={"apiKey": API_KEY, "regions": "au", "markets": "h2h"}
+        params={"apiKey": API_KEY, "regions": ",".join(args.regions), "markets": "h2h"}
     )
     odds_data = response.json()
     for event in odds_data:
