@@ -2,7 +2,6 @@ import requests
 from datetime import datetime, timezone
 from config import API_KEY
 import json
-import argparse
 
 EXCLUDED_BOOKMAKERS = {"unibet", "betfair_ex_au", "betfair_ex_eu"}
 LOG_PATH = "arb_log.jsonl"
