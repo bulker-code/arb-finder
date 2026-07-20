@@ -28,4 +28,7 @@ for sport in active_sports:
         log_result(sport, event, stakes_info)
         print(stakes_info)
         if stakes_info["is_arb"] and stakes_info["profit"] >= args.min_profit:
-            print(f"Arbitrage opportunity found for {event['home_team']} vs {event['away_team']}: Expected Profit: {stakes_info['profit']:.2f}%")
+            print(f"ARB FOUND — Profit: {stakes_info['profit']:.2f}%")
+            print(f'Sport: {event["sport_title"]}')
+            for name, (price, book, stake) in stakes_info["odds"].items():
+                print(f"  {name}: {price:.2f} @ {book} — stake ${stake:.2f}")
