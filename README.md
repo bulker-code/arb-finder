@@ -1,5 +1,8 @@
 # arb-finder
 
+![Tests](https://github.com/bulker-code/arb-finder/actions/workflows/tests.yml/badge.svg)
+
+
 Scans [The Odds API](https://the-odds-api.com/) for Australian sportsbook odds, finds
 arbitrage ("arb") opportunities across bookmakers on the h2h (moneyline) market, and
 logs every scanned result to a local file.
@@ -72,6 +75,27 @@ back line by line). Each record includes:
 ```
 
 `arb_log.jsonl` is gitignored — it's local run data, not source.
+
+## Log Analysis
+
+`log_analysis.py` reads back through your own `arb_log.jsonl` and reports how often
+arbs actually turned up across everything you've scanned so far:
+
+```
+python log_analysis.py
+```
+
+Example output, from actual runs against live odds:
+
+```
+Arbitrage frequency: 1.46%
+Total log entries processed: 686
+Arbs opportunities: 10
+Average profit:0.42%
+```
+
+If `arb_log.jsonl` doesn't exist yet (e.g. on a fresh clone, before the scanner has been
+run once), it prints `Log file not found.` instead of crashing.
 
 ## Tests
 Install dev dependencies, then run the suite:
