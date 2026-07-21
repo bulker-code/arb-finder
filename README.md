@@ -1,8 +1,5 @@
 # arb-finder
 
-![Tests](https://github.com/bulker-code/arb-finder/actions/workflows/tests.yml/badge.svg)
-
-
 Scans [The Odds API](https://the-odds-api.com/) for Australian sportsbook odds, finds
 arbitrage ("arb") opportunities across bookmakers on the h2h (moneyline) market, and
 logs every scanned result to a local file.
