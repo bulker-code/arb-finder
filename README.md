@@ -78,7 +78,8 @@ Unit testing results for arb_logic shown below.
 
 ```python -m pytest tests/ -v```
 
-<img width="614" height="281" alt="image" src="https://github.com/user-attachments/assets/3898bc76-d12d-481b-923f-3dad0629ac3e" />
+<img width="616" height="298" alt="image" src="https://github.com/user-attachments/assets/cfa0c039-53e5-43ab-9e9b-51298b4cf386" />
+
 
 ## Notes
 
