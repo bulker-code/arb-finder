@@ -187,8 +187,9 @@ def test_is_upcoming_past_event_is_false():
 # ---------------------------------------------------------------------------
 
 class _FakeResponse:
-    def __init__(self, payload):
+    def __init__(self, payload, status_code=200):
         self._payload = payload
+        self.status_code = status_code
 
     def json(self):
         return self._payload
@@ -233,3 +234,14 @@ def test_get_active_sports_no_wanted_sports_returns_all_active(monkeypatch):
     result = get_active_sports("fake-key", wanted_sports=None)
 
     assert result == ["soccer_epl"]
+
+
+def test_get_active_sports_returns_empty_list_on_non_200(monkeypatch):
+    monkeypatch.setattr(
+        "arb_logic.requests.get",
+        lambda url, params=None: _FakeResponse({"message": "rate limited"}, status_code=429),
+    )
+
+    result = get_active_sports("fake-key", wanted_sports=["soccer_epl"])
+
+    assert result == []

@@ -20,6 +20,9 @@ def main():
             f"https://api.the-odds-api.com/v4/sports/{sport}/odds/",
             params={"apiKey": API_KEY, "regions": ",".join(args.regions), "markets": "h2h"}
         )
+        if response.status_code != 200:
+            print(f"Failed to fetch odds for sport {sport}. Status code: {response.status_code}")
+            continue
         odds_data = response.json()
         for event in odds_data:
             if not is_upcoming(event):

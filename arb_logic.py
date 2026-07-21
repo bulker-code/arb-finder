@@ -52,6 +52,10 @@ def get_active_sports(api_key, wanted_sports=None):
         "https://api.the-odds-api.com/v4/sports/",
         params={"apiKey": api_key}
     )
+    if response.status_code != 200:
+        print(f"Failed to fetch sports list. Status code: {response.status_code}")
+        return []
+    
     all_sports = response.json()
     
     active_keys = [s["key"] for s in all_sports if s["active"]]
