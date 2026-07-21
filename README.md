@@ -74,9 +74,14 @@ back line by line). Each record includes:
 `arb_log.jsonl` is gitignored — it's local run data, not source.
 
 ## Tests
-Unit testing results for arb_logic shown below.
+Install dev dependencies, then run the suite:
 
-```python -m pytest tests/ -v```
+```
+pip install -r requirements-dev.txt
+pytest tests/ -v
+```
+
+Unit testing results for arb_logic shown below.
 
 <img width="616" height="298" alt="image" src="https://github.com/user-attachments/assets/cfa0c039-53e5-43ab-9e9b-51298b4cf386" />
 
