@@ -1,0 +1,54 @@
+[
+  {
+    "id": "d5f7b8b3f8a9a1b2c3d4e5f60718293a",
+    "sport_key": "soccer_epl",
+    "sport_title": "EPL",
+    "commence_time": "2026-08-01T12:00:00Z",
+    "home_team": "Arsenal",
+    "away_team": "Chelsea",
+    "bookmakers": [
+      {
+        "key": "sportsbet",
+        "title": "Sportsbet",
+        "markets": [
+          {
+            "key": "h2h",
+            "outcomes": [
+              {"name": "Arsenal", "price": 2.10},
+              {"name": "Chelsea", "price": 3.60},
+              {"name": "Draw", "price": 3.40}
+            ]
+          }
+        ]
+      },
+      {
+        "key": "tab",
+        "title": "TAB",
+        "markets": [
+          {
+            "key": "h2h",
+            "outcomes": [
+              {"name": "Arsenal", "price": 1.95},
+              {"name": "Chelsea", "price": 4.20},
+              {"name": "Draw", "price": 3.30}
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betfair_ex_au",
+        "title": "Betfair Exchange",
+        "markets": [
+          {
+            "key": "h2h",
+            "outcomes": [
+              {"name": "Arsenal", "price": 2.50},
+              {"name": "Chelsea", "price": 5.00},
+              {"name": "Draw", "price": 3.80}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
