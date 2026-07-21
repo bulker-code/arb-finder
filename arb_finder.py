@@ -41,11 +41,9 @@ def calculate_stakes(best_odds, total_stake):
         
         for index, key, in enumerate(best_odds.keys()):
             best_odds[key].append(stakes[index])
-        #print(f"Stakes: {[f'{stake:.2f}' for stake in stakes]}, Total Implied: {total_implied:.4f}, Expected Profit: {expected_profit:.2f}")
         return {"is_arb": True, "odds": best_odds, "total_implied": total_implied, "profit": expected_profit}
     
     else:
-        #print(f"Not an arb, Implied: {total_implied:.4f}")
         return {"is_arb": False, "odds": best_odds, "total_implied": total_implied, "profit": None}
     
 
@@ -59,9 +57,8 @@ def get_active_sports(api_key, wanted_sports=None):
     active_keys = [s["key"] for s in all_sports if s["active"]]
     
     if wanted_sports is not None:
-        # only keep sports you actually care about, that are also active
-        # "upcoming" is a virtual key the /odds endpoint accepts directly —
-        # it never appears in /sports, so let it through unfiltered
+        # only keep wanted sports, that are also active. 
+        # odds endpoint accept "upcoming" key, so it can pass through unfiltered
         return [s for s in wanted_sports if s == "upcoming" or s in active_keys]
     
     return active_keys
