@@ -25,7 +25,7 @@ For each sport requested, the scanner:
 
 1. Install dependencies:
    ```
-   pip install requests
+   pip install -r requirements.txt
    ```
 2. Create `config.py` in the repo root with your API key:
    ```python
