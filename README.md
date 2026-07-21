@@ -77,6 +77,7 @@ back line by line). Each record includes:
 Unit testing results for arb_logic shown below.
 
 ```python -m pytest tests/ -v```
+
 <img width="614" height="281" alt="image" src="https://github.com/user-attachments/assets/3898bc76-d12d-481b-923f-3dad0629ac3e" />
 
 ## Notes
