@@ -73,6 +73,9 @@ back line by line). Each record includes:
 
 `arb_log.jsonl` is gitignored — it's local run data, not source.
 
+## Tests
+<img width="614" height="281" alt="image" src="https://github.com/user-attachments/assets/3898bc76-d12d-481b-923f-3dad0629ac3e" />
+
 ## Notes
 
 - Only the `h2h` (moneyline) market is scanned; totals/spreads aren't covered.
