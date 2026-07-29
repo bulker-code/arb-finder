@@ -116,3 +116,4 @@ Unit testing results for arb_logic shown below.
 - `unibet`, `betfair_ex_au`, and `betfair_ex_eu` are excluded from odds comparison.
 - Consider odds may change during the time of scanning and bet placement.
 - Most arb opportunities are slim below 3% profit
+- Aus bookmakers require money deposited to be wagered before withdrawal to prevent money laundering.
