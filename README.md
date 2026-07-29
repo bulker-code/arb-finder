@@ -1,5 +1,7 @@
 # arb-finder
 
+Started after a $20 bet on the footy got me wondering whether the same game is ever priced differently across bookmakers
+
 Scans [The Odds API](https://the-odds-api.com/) for Australian sportsbook odds, finds
 arbitrage ("arb") opportunities across bookmakers on the h2h (moneyline) market, and
 logs every scanned result to a local file.
